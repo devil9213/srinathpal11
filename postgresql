@@ -1,0 +1,24 @@
+1. GunZip:
+gzip -9 dump.sql   ===>.  to transform to dump.sql.gz
+gunzip < dump.sql.gz | sudo -u sltech psql nisar_live -p 5437
+
+2. PG Restore:
+pg_restore -d bella16_mirated -p 5437 bella_live16_final_sachin.sql -U sltech
+
+3. DB Restore:
+psql -f dump.sql -p 5437 -d bella16_mirated
+
+4. Copy From Server:
+sudo scp -i "bellaliveoman13.pem" ubuntu@13.234.6.202:/opt/nisar.zip . 
+
+5. Filestore:
+sudo cp filestore/* -r /home/sltech/.local/share/Odoo/filestore/odooicon/
+
+6. Upload File From Local to Server:
+sudo scp -i bella13test.pem /home/sltech/Documents/bella_db/bella_db_2023-10-10_11-43-58/dump.sql ubuntu@3.110.83.6:/opt
+
+7. Create Database:
+create database <database name>;
+create database <new database name> template <from database name>;
+
+
